@@ -19,6 +19,7 @@ export default function Home() {
   const handleSaveClick = () => {
     navigate("/mainpage");
   };
+
   return (
     <S.Container>
       <Header />

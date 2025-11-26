@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.main`
   min-height: 100vh;
   width: 100%;
-  background: #ffc4dd;z
+  background: #ffc4dd;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -157,29 +157,71 @@ export const ButtonRow = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 52px;
+  gap: 70px;
 `;
 
 export const GlassCircle = styled.button`
-  width: 95px;
-  height: 95px;
+  position: relative;
+  width: 93px;
+  height: 93px;
   border-radius: 50%;
+  background: transparent;
   border: none;
-  background: rgba(255, 255, 255, 0.35);
 
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  cursor: pointer;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
-    width: 40px;
+    width: 44px;
+    z-index: 2;
+    position: relative;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.2));
   }
 
-  cursor: pointer;
+  border-left: 2px solid rgba(255, 255, 255, 0.6);
+  border-top: 2px solid rgba(255, 255, 255, 0.6);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.2), 0 0 35px rgba(255, 255, 255, 0.3);
+
+  transition: all 0.25s ease-in-out;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border-radius: 50%;
+
+    background: radial-gradient(
+      circle at center,
+      rgb(0 0 0 / 18%) 0%,
+      rgb(0 0 0 / 10%) 35%,
+      rgb(56 56 56 / 5%) 60%,
+      rgb(130 130 130 / 0%) 85%
+    );
+
+    filter: blur(1.2px);
+    z-index: 1;
+  }
+
+  &:hover {
+    background: #ff4fa0;
+    border-left: none;
+    border-top: none;
+    box-shadow: none;
+  }
+
+  &:hover::before {
+    background: transparent;
+    filter: none;
+  }
+
+  &:hover img {
+    filter: none;
+  }
 `;

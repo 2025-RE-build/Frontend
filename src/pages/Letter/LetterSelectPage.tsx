@@ -2,7 +2,7 @@ import * as S from "./LetterSelectPage.style";
 
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
-import WaveBanner from "./WaveBanner";
+import WaveBanner from "./components/WaveBanner";
 
 import chatIcon from "../../assets/chat_icon.svg";
 import mailIcon from "../../assets/mail_icon.svg";

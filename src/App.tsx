@@ -5,6 +5,8 @@ import Home from "./pages/Home/Home";
 import Start from "./pages/Home/Start";
 import MainPage from "./pages/Home/MainPage";
 import Letter from "./pages/Letter/LetterSelectPage";
+import LetterWrite from "./pages/Letter/LetterWritePage";
+import LetterDetail from "./pages/Letter/LetterDetailPage";
 
 // import OnBoarding from "./pages/OnBoarding/OnBoarding";
 
@@ -19,6 +21,8 @@ function App() {
           <Route path="/start" element={<Start />} />
           <Route path="/mainpage" element={<MainPage />} />
           <Route path="/letter" element={<Letter />} />
+          <Route path="/letterwrite" element={<LetterWrite />} />
+          <Route path="/letterdetail" element={<LetterDetail />} />
         </Routes>
       </AppContainer>
     </BrowserRouter>
