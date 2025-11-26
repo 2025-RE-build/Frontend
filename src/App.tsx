@@ -7,15 +7,14 @@ import MainPage from "./pages/Home/MainPage";
 import Letter from "./pages/Letter/LetterSelectPage";
 import LetterWrite from "./pages/Letter/LetterWritePage";
 import LetterDetail from "./pages/Letter/LetterDetailPage";
-
-// import OnBoarding from "./pages/OnBoarding/OnBoarding";
+import OnBoarding from "./pages/OnBoarding/OnBoarding";
 
 function App() {
   return (
     <BrowserRouter>
       <AppContainer>
         <Routes>
-          {/* <Route path="/onboarding" element={<OnBoarding />} /> */}
+          <Route path="/onboarding" element={<OnBoarding />} />
 
           <Route path="/" element={<Home />} />
           <Route path="/start" element={<Start />} />
