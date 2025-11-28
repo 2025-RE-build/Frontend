@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Background=styled.div`
 background-color:#FF5FA4;
 width: 400px;
-height:700px;
+height:100%;
 overflow:hidden;
 display:flex;
 flex-direction:column;
@@ -146,7 +146,7 @@ width:100%;
 height:360px;
 z-index:10;position: relative;
 `;
-
+//회원가입 정보창
 export const Signup_Box=styled.div`
 width:300px;
 height:220px;
@@ -187,6 +187,8 @@ border-radius:20px;
 padding:2px 20px;outline: none;
 
 `;
+//버튼 UI
+
 export const Signup_Button=styled.button`
 width:150px;
 height: 50px;

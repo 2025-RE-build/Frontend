@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const HEAD=styled.div`
-width:400px;
-
+width:100%;
 ` //헤더 총 길이 400px => 바뀔 수도 있음, 배치는 app이나 main에서 할 듯..
 
 export const Black_Box = styled.div`
