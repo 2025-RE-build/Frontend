@@ -12,6 +12,8 @@ import CallPage from "./pages/Call/CallPage";
 import Calling from "./pages/Call/Calling";
 import SecretLockPage from "./pages/Secret/SecretLockPage";
 import MySecret from "./pages/Secret/MySecret";
+import Signup from './components/Signup'
+import KakaoTalk from './components/KakaoTalk'
 
 function App() {
   return (
@@ -19,7 +21,8 @@ function App() {
       <AppContainer>
         <Routes>
           <Route path="/" element={<OnBoarding />} />
-
+          <Route path="/Signup" element={<Signup />} />
+          <Route path="/Kakao" element={<KakaoTalk />} />
           <Route path="/home" element={<Home />} />
           <Route path="/start" element={<Start />} />
           <Route path="/mainpage" element={<MainPage />} />
@@ -35,5 +38,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;
