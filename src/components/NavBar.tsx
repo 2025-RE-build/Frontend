@@ -1,25 +1,44 @@
-import React from "react";
-import {White_Circle,Pink_Circle,Black_Circle,NAV_Image} from "../styles/NavBar";
-import HOME from "../img/home.png";
-import MESSAGE from "../img/message.png";
-import SECRET from "../img/secret.png";
-import PHONE from "../img/phone.png";
+// import React from "react";
+import {
+  White_Circle,
+  Pink_Circle,
+  Black_Circle,
+  NAV_Image,
+} from "@/styles/NavBar";
+import { Link } from "react-router-dom";
 
+import HOME from "@/assets/home.svg";
+import MESSAGE from "@/assets/message.svg";
+import SECRET from "@/assets/secret.svg";
+import PHONE from "@/assets/phone.svg";
 
-const NavBar = () =>{
+const NavBar = () => {
+  return (
+    <White_Circle>
+      <Pink_Circle>
+        <Black_Circle>
+          <Link to="/call">
+            <NAV_Image src={PHONE} alt="전화" />
+          </Link>
 
-    return(
-        <White_Circle>
-            <Pink_Circle>
-                <Black_Circle>
-                 <NAV_Image src={PHONE}/> {/*링크 나중에 걸 예정*/}
-                 <NAV_Image src={HOME}/>
-                 <NAV_Image src={MESSAGE}/>
-                 <NAV_Image src={SECRET}/>
-                </Black_Circle>
-            </Pink_Circle>
-        </White_Circle>
-    );
+          {/* 홈 */}
+          <Link to="/mainpage">
+            <NAV_Image src={HOME} alt="홈" />
+          </Link>
+
+          {/* 메시지 */}
+          <Link to="/letter">
+            <NAV_Image src={MESSAGE} alt="메시지" />
+          </Link>
+
+          {/* 비밀글 */}
+          <Link to="/secret">
+            <NAV_Image src={SECRET} alt="비밀" />
+          </Link>
+        </Black_Circle>
+      </Pink_Circle>
+    </White_Circle>
+  );
 };
 
 export default NavBar;
