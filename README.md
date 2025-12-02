@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="50%" height="486" alt="image" src="https://github.com/user-attachments/assets/de29f1c1-72f6-4283-b745-244dc6fef342" />
+<img width="50%" height="486" alt="image" src="file:///C:/Users/admin/Desktop/RE-build/src/assets/Rebuild_logo.svg" />
 
 
 **덕성 멋사 13기 데모데이**
