@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import callingBackground from "@/assets/phoneBackground.svg";
+
+// 통화 종료시
+interface DimProps {
+  $ended?: boolean;
+}
 
 export const Container = styled.div`
   position: relative;
@@ -8,38 +14,20 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 90px 0 150px;
-  background: radial-gradient(
-      circle at 87% 33%,
-      rgb(174 0 80 / 85%) 0%,
-      rgba(255, 70, 160, 0.72) 36%,
-      rgba(255, 120, 185, 0.35) 69%,
-      rgba(255, 175, 210, 0.18) 104%,
-      rgba(255, 220, 235, 0.05) 106%,
-      rgba(255, 255, 255, 0) 120%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 240, 250, 0.65) 0%,
-      rgba(255, 170, 210, 0.35) 30%,
-      rgba(255, 140, 180, 0.22) 60%,
-      rgba(255, 190, 220, 0.1) 80%,
-      rgba(255, 255, 255, 0.05) 100%
-    );
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.25);
-
+  background: url(${callingBackground}) no-repeat center center;
+  background-size: cover;
   overflow: hidden;
 `;
 
-export const TopInfo = styled.section`
+export const TopInfo = styled.section<DimProps>`
   position: relative;
   text-align: center;
   color: #ffffff;
   z-index: 1;
   margin-top: 60px;
+
+  opacity: ${({ $ended }) => ($ended ? 0.4 : 1)};
+  transition: opacity 0.25s ease;
 
   p {
     margin-bottom: 16px;
@@ -57,12 +45,15 @@ export const TopInfo = styled.section`
   }
 `;
 
-export const ButtonArea = styled.section`
+export const ButtonArea = styled.section<DimProps>`
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  opacity: ${({ $ended }) => ($ended ? 0.4 : 1)};
+  transition: opacity 0.25s ease;
 `;
 
 export const ButtonRow = styled.div`
@@ -82,22 +73,59 @@ export const RoundButton = styled.button`
     rgba(255, 255, 255, 0.12)
   );
   backdrop-filter: blur(10px);
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgb(191 88 133 / 55%);
+    mix-blend-mode: multiply;
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+
+    box-shadow: inset 4px 2px 10px rgb(255 255 255 / 55%),
+      inset -6px -6px 14px rgb(255 121 189),
+      inset 0 0 6px rgba(255, 255, 255, 0.18);
+  }
 
   cursor: pointer;
   outline: none;
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: default;
+  }
 `;
 
 export const IconImg = styled.img`
   width: 40px;
   height: 40px;
+  z-index: 3;
 `;
 
 export const EndButton = styled(RoundButton)`
   background: #ff1f33;
   border-color: transparent;
-  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.35);
+
+  &::before {
+    content: none !important;
+  }
+  &::after {
+    content: none !important;
+  }
 `;

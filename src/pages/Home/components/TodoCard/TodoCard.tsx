@@ -1,4 +1,4 @@
-import * as S from "./TodoCard.style";
+import * as S from "@/pages/Home/components/TodoCard/TodoCard.style";
 
 import checkImg from "@/assets/todo_check.svg";
 

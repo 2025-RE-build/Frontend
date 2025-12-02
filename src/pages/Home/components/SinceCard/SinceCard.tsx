@@ -1,4 +1,4 @@
-import * as S from "./SinceCard.style";
+import * as S from "@/pages/Home/components/SinceCard/SinceCard.style";
 
 import sinceBg from "@/assets/since_broken.svg";
 import sinceLogo from "@/assets/Rebuild_logo_3.svg";

@@ -1,5 +1,5 @@
 // 온보딩(소개)-2
-import * as S from "./Onboard.style";
+import * as S from "@/pages/OnBoarding/screens/Onboard.style";
 
 import Phone1 from "@/assets/phone_ob_1.svg";
 import Phone2 from "@/assets/phone_ob_2.svg";

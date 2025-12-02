@@ -1,4 +1,4 @@
-import * as S from "./ProgressBar.style";
+import * as S from "@/pages/OnBoarding/components/ProgressBar.style";
 
 interface ProgressBarProps {
   step: number;

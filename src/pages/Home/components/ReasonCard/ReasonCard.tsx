@@ -1,4 +1,4 @@
-import * as S from "./ReasonCard.style";
+import * as S from "@/pages/Home/components/ReasonCard/ReasonCard.style";
 
 export default function ReasonCard() {
   return (

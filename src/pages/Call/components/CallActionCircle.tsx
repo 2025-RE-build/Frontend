@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import * as S from "./CallActionCircle.style";
+import * as S from "@/pages/Call/components/CallActionCircle.style";
 
 import chatIcon from "@/assets/chat_icon.svg";
 import callIcon from "@/assets/call_icon.svg";

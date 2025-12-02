@@ -1,7 +1,7 @@
 // import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import * as S from "./CommentsStyle";
+import * as S from "@/pages/Community/CommentsStyle";
 import Header from "@/components/Header/Header";
 
 import Letter_Char from "@/assets/letter_charter.svg";

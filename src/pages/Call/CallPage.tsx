@@ -1,10 +1,10 @@
 import { useState } from "react";
-import * as S from "./CallPage.style";
+import * as S from "@/pages/Call/CallPage.style";
 
 import Header from "@/components/Header/Header";
 import NavBar from "@/components/NavBar/NavBar";
-import CallActionsCircle from "./components/CallActionCircle";
-import CallInfoCard from "./components/CallInfoCard";
+import CallActionsCircle from "@/pages/Call/components/CallActionCircle";
+import CallInfoCard from "@/pages/Call/components/CallInfoCard";
 
 import closeEditIcon from "@/assets/close_icon.svg";
 import penEditIcon from "@/assets/edit_icon.svg";

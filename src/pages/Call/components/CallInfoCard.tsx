@@ -1,4 +1,4 @@
-import * as S from "./CallInfoCard.style";
+import * as S from "@/pages/Call/components/CallInfoCard.style";
 
 export type CallInfoCardProps = {
   label: string;

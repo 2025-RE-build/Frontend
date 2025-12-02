@@ -1,5 +1,5 @@
 // 온보딩(소개)-0
-import * as S from "./Onboard.style";
+import * as S from "@/pages/OnBoarding/screens/Onboard.style";
 
 import startLogo from "@/assets/Rebuild_logo.svg";
 import SmileImg from "@/assets/Smile_ob.svg";

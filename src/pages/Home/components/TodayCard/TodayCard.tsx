@@ -1,4 +1,4 @@
-import * as S from "./TodayCard.style";
+import * as S from "@/pages/Home/components/TodayCard/TodayCard.style";
 
 import LogoImg from "@/assets/Rebuild_logo_start.svg";
 

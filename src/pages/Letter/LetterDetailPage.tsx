@@ -1,4 +1,4 @@
-import * as S from "./LetterDetailPage.style";
+import * as S from "@/pages/Letter/LetterDetailPage.style";
 import { useNavigate } from "react-router-dom";
 
 import Header from "@/components/Header/Header";

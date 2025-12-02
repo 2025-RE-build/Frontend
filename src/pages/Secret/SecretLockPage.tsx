@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import * as S from "./SecretLockPage.style";
+import * as S from "@/pages/Secret/SecretLockPage.style";
 
 import Header from "@/components/Header/Header";
 import NavBar from "@/components/NavBar/NavBar";

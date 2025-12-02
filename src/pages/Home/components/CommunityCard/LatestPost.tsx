@@ -1,7 +1,7 @@
 // import React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "@/pages/Home/LatestPoststyle";
+import * as S from "@/pages/Home/components/CommunityCard/LatestPoststyle";
 
 import FIRE from "@/assets/local_fire_department.svg";
 import NEWPOST from "@/assets/NewPOST.svg";

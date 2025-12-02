@@ -1,5 +1,6 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "@/pages/SignUp/Signup";
 
 import Rebuild_logo from "@/assets/로고1.svg";
@@ -10,7 +11,6 @@ import Asterisk1 from "@/assets/Asterisk 1.svg";
 import SoftFlower from "@/assets/four_leaf_flower.svg";
 import fiveleaf from "@/assets/5_Dots.svg";
 import Smile from "@/assets/smile_ob.svg";
-import { useState } from "react";
 
 interface SignupForm {
   userId: string;
@@ -19,6 +19,8 @@ interface SignupForm {
 }
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   // 폼 데이터를 위한 상태
   const [formData, setFormData] = useState<SignupForm>({
     userId: "",
@@ -33,8 +35,6 @@ const Signup = () => {
       [name]: value,
     }));
   };
-
-  // const navigate = useNavigate();
 
   const handleSubmit = async () => {
     // 1. 유효성 검사 (Validation)
@@ -61,6 +61,7 @@ const Signup = () => {
       // 임시 로직
       console.log("회원가입 데이터:", formData);
       alert(`${formData.userId}님 가입완료`);
+      navigate("/login");
     } catch (error) {
       console.error("회원가입 중 오류 발생:", error);
       alert("서버 오류로 가입에 실패했습니다.");
@@ -69,85 +70,85 @@ const Signup = () => {
 
   return (
     <S.Background>
-    <S.DIV>
-      {/*커튼, 로고, 이미지들 */}
-      <S.Final_Box>
-        <S.PinkBOX />
-        <S.Circle_Box>
-          <S.Final_Curtain /> <S.Final_Curtain /> <S.Final_Curtain />
-          <S.Final_Curtain /> <S.Final_Curtain /> <S.Final_Curtain />
-        </S.Circle_Box>
-      </S.Final_Box>
-      <S.FlowerIMG src={Flower} />
-      <S.Asterisk src={Asterisk2} />
-      <S.Qurter_flower src={QurterFlower} />
-      <S.Big_Asterisk src={Asterisk1} />
-      <S.Soft_Flower  src={SoftFlower} />
-      <S.Five_Flower  src={fiveleaf} />
-      <S.SmileImg src={Smile} />
-      <S.Second_Box>
-        <S.BlackBox />
-  
-        <S.Circle_Box>
-          <S.Second_Curtain />
-          <S.Second_Curtain />
-          <S.Second_Curtain />
-          <S.Second_Curtain />
-          <S.Second_Curtain />
-          <S.Second_Curtain />
-          <S.Second_Curtain />
-        </S.Circle_Box>
-      </S.Second_Box>
-      <S.First_Box>
-        <S.PINK_BOX2 />
-        <S.Circle_Box>
-        <S.First_Curtain />
-        <S.First_Curtain />
-        <S.First_Curtain />
-        <S.First_Curtain />
-        <S.First_Curtain />
-        <S.First_Curtain />
-          <S.First_Curtain />
-        </S.Circle_Box>
-      </S.First_Box>
-      <S.Logo src={Rebuild_logo} />
-    </S.DIV>
-  
-    <S.Signup_Box>
-      <S.INPUT_BOX>
-        <S.Title>1. 아이디</S.Title>
-        <S.INPUT_content
-          type="text"
-          placeholder="입력하시오..."
-          name="userId"
-          value={formData.userId}
-          onChange={handleChange}
-        />
-      </S.INPUT_BOX>
-      <S.INPUT_BOX>
-        <S.Title>2. 닉네임</S.Title>
-        <S.INPUT_content
-          type="text"
-          placeholder="입력하시오..."
-          name="nickname"
-          value={formData.nickname}
-          onChange={handleChange}
-        />
-      </S.INPUT_BOX>
-      <S.INPUT_BOX>
-        <S.Title>3. 비밀번호</S.Title>
-        <S.INPUT_content
-          type="password"
-          placeholder="입력하시오..."
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-      </S.INPUT_BOX>
-    </S.Signup_Box>
-  
-    <S.Signup_Button onClick={handleSubmit}>등록하기</S.Signup_Button>
-  </S.Background>
+      <S.DIV>
+        {/*커튼, 로고, 이미지들 */}
+        <S.Final_Box>
+          <S.PinkBOX />
+          <S.Circle_Box>
+            <S.Final_Curtain /> <S.Final_Curtain /> <S.Final_Curtain />
+            <S.Final_Curtain /> <S.Final_Curtain /> <S.Final_Curtain />
+          </S.Circle_Box>
+        </S.Final_Box>
+        <S.FlowerIMG src={Flower} />
+        <S.Asterisk src={Asterisk2} />
+        <S.Qurter_flower src={QurterFlower} />
+        <S.Big_Asterisk src={Asterisk1} />
+        <S.Soft_Flower src={SoftFlower} />
+        <S.Five_Flower src={fiveleaf} />
+        <S.SmileImg src={Smile} />
+        <S.Second_Box>
+          <S.BlackBox />
+
+          <S.Circle_Box>
+            <S.Second_Curtain />
+            <S.Second_Curtain />
+            <S.Second_Curtain />
+            <S.Second_Curtain />
+            <S.Second_Curtain />
+            <S.Second_Curtain />
+            <S.Second_Curtain />
+          </S.Circle_Box>
+        </S.Second_Box>
+        <S.First_Box>
+          <S.PINK_BOX2 />
+          <S.Circle_Box>
+            <S.First_Curtain />
+            <S.First_Curtain />
+            <S.First_Curtain />
+            <S.First_Curtain />
+            <S.First_Curtain />
+            <S.First_Curtain />
+            <S.First_Curtain />
+          </S.Circle_Box>
+        </S.First_Box>
+        <S.Logo src={Rebuild_logo} />
+      </S.DIV>
+
+      <S.Signup_Box>
+        <S.INPUT_BOX>
+          <S.Title>1. 아이디</S.Title>
+          <S.INPUT_content
+            type="text"
+            placeholder="입력하시오..."
+            name="userId"
+            value={formData.userId}
+            onChange={handleChange}
+          />
+        </S.INPUT_BOX>
+        <S.INPUT_BOX>
+          <S.Title>2. 닉네임</S.Title>
+          <S.INPUT_content
+            type="text"
+            placeholder="입력하시오..."
+            name="nickname"
+            value={formData.nickname}
+            onChange={handleChange}
+          />
+        </S.INPUT_BOX>
+        <S.INPUT_BOX>
+          <S.Title>3. 비밀번호</S.Title>
+          <S.INPUT_content
+            type="password"
+            placeholder="입력하시오..."
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </S.INPUT_BOX>
+      </S.Signup_Box>
+
+      <S.Signup_Button onClick={handleSubmit}>등록하기</S.Signup_Button>
+    </S.Background>
   );
 };
 

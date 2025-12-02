@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  /* 앱 전체 래퍼(StyledContainer) 안에서 꽉 차게 */
   width: 100%;
   height: 100%;
   display: flex;
@@ -10,19 +9,17 @@ export const Container = styled.div`
 `;
 
 export const TopSection = styled.section`
-  flex: 1; /* Header, NavBar 사이에서 남은 공간 다 차지 */
+  flex: 1;
   position: relative;
-  overflow-y: auto; /* ✅ 여기서 스크롤! */
-  padding-bottom: 120px; /* 아래 NavBar에 내용 안 가리게 여유 */
+  overflow-y: auto;
+  padding-bottom: 120px;
 
-  /* 스크롤바 숨기기 (크롬) */
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
 export const ScrollArea = styled.div`
-  /* TopSection 안에서 내용들을 세로로 쌓는 래퍼 */
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -53,6 +50,7 @@ export const TopMessage = styled.p`
   font-size: 13px;
   color: #000;
   z-index: 7;
+  white-space: nowrap;
 
   .white {
     color: #fff;

@@ -1,5 +1,5 @@
 // 헤어진 이유 & 헤어진 날 입력 후 들어오는 페이지임
-import * as S from "./MainPage.style";
+import * as S from "@/pages/Home/MainPage.style";
 
 import Header from "@/components/Header/Header";
 import NavBar from "@/components/NavBar/NavBar";
@@ -41,8 +41,8 @@ export default function MainPage() {
           <ReasonCard />
           <S.TopMessage>
             <span className="white">STEP BY S</span>
-            <span>TEP, YOU’RE MOVING FO</span>
-            <span className="white">RWARD</span>
+            <span>TEP, YOU’RE MOVING F</span>
+            <span className="white">ORWARD</span>
             <span>!</span>
           </S.TopMessage>
           <TodayCard />

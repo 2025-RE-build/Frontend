@@ -1,6 +1,6 @@
 // import React from "react";
 import Rebuild_logo from "@/assets/Rebuild_logo.svg";
-import * as S from "./HeaderStyle";
+import * as S from "@/components/Header/HeaderStyle";
 
 const Header = () => {
   return (

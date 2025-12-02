@@ -1,5 +1,5 @@
 // 온보딩(소개)-1
-import * as S from "./Onboard.style";
+import * as S from "@/pages/OnBoarding/screens/Onboard.style";
 
 import CharacterImg from "@/assets/Rebuild_character.svg";
 

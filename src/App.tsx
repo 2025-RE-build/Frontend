@@ -1,25 +1,26 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AppContainer from "./components/common/AppContainer";
+import AppContainer from "@/components/common/AppContainer";
 
-import OnBoarding from "./pages/OnBoarding/OnBoarding";
-import Home from "./pages/Home/Home";
-import Start from "./pages/Home/Start";
-import MainPage from "./pages/Home/MainPage";
-import Letter from "./pages/Letter/LetterSelectPage";
-import LetterWrite from "./pages/Letter/LetterWritePage";
-import LetterDetail from "./pages/Letter/LetterDetailPage";
-import CallPage from "./pages/Call/CallPage";
-import Calling from "./pages/Call/Calling";
-import SecretLockPage from "./pages/Secret/SecretLockPage";
-import MySecret from "./pages/Secret/MySecret";
-import MyLetters from "./pages/Secret/Secret1";
-import MyComments from "./pages/Secret/Secret2";
-import Signup from "./pages/SignUp/Signup.tsx";
-import KakaoTalk from "./pages/Letter/KakaoTalk";
-import CommunityWrite from "./pages/Community/CommunityWrite";
-import PostList from "./pages/Community/PostList";
-import Comments from "./pages/Community/Comments.tsx";
-import Login from "./pages/Login/Login.tsx"
+import OnBoarding from "@/pages/OnBoarding/OnBoarding";
+import Home from "@/pages/Home/Home";
+import Start from "@/pages/Home/Start";
+import MainPage from "@/pages/Home/MainPage";
+import Letter from "@/pages/Letter/LetterSelectPage";
+import LetterWrite from "@/pages/Letter/LetterWritePage";
+import LetterDetail from "@/pages/Letter/LetterDetailPage";
+import CallPage from "@/pages/Call/CallPage";
+import Calling from "@/pages/Call/Calling";
+import SecretLockPage from "@/pages/Secret/SecretLockPage";
+import MySecret from "@/pages/Secret/MySecret";
+import MyLetters from "@/pages/Secret/Secret1";
+import MyComments from "@/pages/Secret/Secret2";
+import Signup from "@/pages/SignUp/Signup.tsx";
+import KakaoTalk from "@/pages/Letter/KakaoTalk";
+import CommunityWrite from "@/pages/Community/CommunityWrite";
+import PostList from "@/pages/Community/PostList";
+import Comments from "@/pages/Community/Comments.tsx";
+import Login from "@/pages/Login/Login.tsx";
+
 function App() {
   return (
     <BrowserRouter>

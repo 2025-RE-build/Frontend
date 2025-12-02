@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import * as S from "./MySecret.syle";
+import * as S from "@/pages/Secret/MySecret.style";
 
 import Header from "@/components/Header/Header";
 import NavBar from "@/components/NavBar/NavBar";

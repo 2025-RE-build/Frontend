@@ -1,34 +1,13 @@
 import styled from "styled-components";
+import callingBackground from "@/assets/callingBackground.svg";
 
 export const Container = styled.div`
   width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-
-  background: radial-gradient(
-      circle at 87% 52%,
-      rgba(255, 45, 142, 0.85) 0%,
-      rgba(255, 70, 160, 0.72) 35%,
-      rgba(255, 120, 185, 0.35) 60%,
-      rgba(255, 175, 210, 0.18) 80%,
-      rgba(255, 220, 235, 0.05) 95%,
-      rgba(255, 255, 255, 0) 120%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(255, 240, 250, 0.65) 0%,
-      rgba(255, 170, 210, 0.35) 30%,
-      rgba(255, 140, 180, 0.22) 60%,
-      rgba(255, 190, 220, 0.1) 80%,
-      rgba(255, 255, 255, 0.05) 100%
-    );
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.25);
-
+  background: url(${callingBackground}) no-repeat center center;
+  background-size: cover;
   overflow: hidden;
 `;
 

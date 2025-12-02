@@ -1,4 +1,4 @@
-import * as S from "./LetterWritePage.style";
+import * as S from "@/pages/Letter/LetterWritePage.style";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import type { ChangeEvent } from "react";

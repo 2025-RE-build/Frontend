@@ -1,17 +1,20 @@
 //걍 판때기
-import * as S from "./OnBoardingStyle";
+import * as S from "@/pages/OnBoarding/OnBoardingStyle";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-import ProgressBar from "./components/ProgressBar";
+import ProgressBar from "@/pages/OnBoarding/components/ProgressBar";
 
-import Onboard1 from "./screens/Onboard1";
-import Onboard2 from "./screens/Onboard2";
-import Onboard3 from "./screens/Onboard3";
-import Onboard4 from "./screens/Onboard4";
-import Onboard5 from "./screens/Onboard5";
+import Onboard1 from "@/pages/OnBoarding/screens/Onboard1";
+import Onboard2 from "@/pages/OnBoarding/screens/Onboard2";
+import Onboard3 from "@/pages/OnBoarding/screens/Onboard3";
+import Onboard4 from "@/pages/OnBoarding/screens/Onboard4";
+import Onboard5 from "@/pages/OnBoarding/screens/Onboard5";
 
 export default function Onboarding() {
+  const navigate = useNavigate();
+
   const [step, setStep] = useState(0);
 
   const pages = [
@@ -33,7 +36,13 @@ export default function Onboarding() {
   }, [step]);
 
   const handleNext = () => {
-    if (step < pages.length - 1) setStep(step + 1);
+    if (step === pages.length - 1) {
+      navigate("/signup");
+      return;
+    }
+    if (step < pages.length - 1) {
+      setStep(step + 1);
+    }
   };
 
   // 온보딩 2부터 적용띠
