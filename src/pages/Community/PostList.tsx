@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "@/styles/PostList";
 
-import Header from "@/components/Header";
+import Header from "@/pages/Header/Header";
 
 import Back from "@/assets/arrow_back_white.svg";
 import Fire from "@/assets/local_fire_department.svg";

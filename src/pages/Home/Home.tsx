@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./Home.style";
 
-import Header from "@/components/Header";
-import NavBar from "@/components/NavBar";
+import Header from "@/pages/Header/Header";
+import NavBar from "@/pages/NavBar/NavBar";
 
 import WaveImg from "@/assets/wave_background.svg";
 import CharacterImg from "@/assets/Rebuild_character.svg";

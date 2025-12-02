@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import type { ChangeEvent } from "react";
 
-import Header from "@/components/Header";
-import NavBar from "@/components/NavBar";
+import Header from "@/pages/Header/Header";
+import NavBar from "@/pages/NavBar/NavBar";
 
 import Flower1 from "@/assets/Soft Flower_l.svg";
 import Flower2 from "@/assets/six_leaf_flower_l.svg";

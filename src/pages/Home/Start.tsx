@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./Start.style";
 
-import Header from "@/components/Header";
-import NavBar from "@/components/NavBar";
+import Header from "@/pages/Header/Header";
+import NavBar from "@/pages/NavBar/NavBar";
 
 import startLogoImg from "@/assets/Rebuild_logo_start.svg";
 import arrowBack from "@/assets/arrow_back.svg";

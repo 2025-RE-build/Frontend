@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect, useCallback, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import * as S from "@/styles/KakaoTalk";
+import * as S from "@/pages/Letter/KakaoTalk";
 
-import Header from "@/components/Header";
+import Header from "@/pages/Header/Header";
 
 import STEP from "@/assets/Step by step, you’re moving forward!.svg";
 import BACK from "@/assets/arrow_back_pink.svg";

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import * as S from "./CallPage.style";
 
-import Header from "@/components/Header";
-import NavBar from "@/components/NavBar";
+import Header from "@/pages/Header/Header";
+import NavBar from "@/pages/NavBar/NavBar";
 import CallActionsCircle from "./components/CallActionCircle";
 import CallInfoCard from "./components/CallInfoCard";
 

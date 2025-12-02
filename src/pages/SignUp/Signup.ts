@@ -203,6 +203,7 @@ align-items: center;
 text-align:center;
 border:none;
 margin:10px 0 150px 0;
+cursor:pointer;
 &:focus {
     outline: none;}
 `;
