@@ -183,6 +183,7 @@ export const Write_Button = styled.button`
   font-weight: 800;
   border: none;
   margin: 50px 0 20px 0;
+  cursor:pointer;
 
   &:focus {
     outline: none;

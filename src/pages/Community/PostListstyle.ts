@@ -131,7 +131,7 @@ export const Input_Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
+cursor:pointer;
   margin: 10px 0 20px 0;
   &:focus {
     outline: none;

@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Header from "@/pages/Header/Header";
@@ -11,6 +11,11 @@ import ADD_img from "@/assets/add_photo_alternate.svg";
 const CommunityWrite = () => {
   const navigate = useNavigate();
 
+  const handleWriteSubmit = () => {
+    console.log("글 작성 API 호출...");
+
+    navigate("/Community/postList"); 
+  };
   return (
     <S.Background>
       <Header />
@@ -43,7 +48,7 @@ const CommunityWrite = () => {
           <S.Content_Box></S.Content_Box>
         </S.Community_ContentBOX>
       </S.INPUT_Box>
-      <S.Write_Button>글 작성하기</S.Write_Button>
+      <S.Write_Button onClick={handleWriteSubmit}>글 작성하기</S.Write_Button>
     </S.Background>
   );
 };

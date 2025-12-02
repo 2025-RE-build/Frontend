@@ -18,7 +18,7 @@ import Signup from "./pages/SignUp/Signup.tsx";
 import KakaoTalk from "./pages/Letter/KakaoTalk";
 import CommunityWrite from "./pages/Community/CommunityWrite";
 import PostList from "./pages/Community/PostList";
-import Comments from "./pages/Community/Comments";
+import Comments from "./pages/Community/Comments.tsx";
 import Login from "./pages/Login/Login.tsx"
 function App() {
   return (
