@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import * as S from "@/pages/SignUp/Signup";
 
 import Rebuild_logo from "@/assets/로고1.svg";
@@ -13,7 +14,7 @@ import fiveleaf from "@/assets/5_Dots.svg";
 import Smile from "@/assets/smile_ob.svg";
 
 interface SignupForm {
-  userId: string;
+  loginId: string;
   nickname: string;
   password: string;
 }
@@ -21,12 +22,12 @@ interface SignupForm {
 const Signup = () => {
   const navigate = useNavigate();
 
-  // 폼 데이터를 위한 상태
   const [formData, setFormData] = useState<SignupForm>({
-    userId: "",
+    loginId: "",
     nickname: "",
     password: "",
   });
+  const API_URL = "http://localhost:8080/api/users/signup";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,34 +39,48 @@ const Signup = () => {
 
   const handleSubmit = async () => {
     // 1. 유효성 검사 (Validation)
-    if (!formData.userId || !formData.nickname || !formData.password) {
+    if (!formData.loginId || !formData.nickname || !formData.password) {
       alert("모든 정보를 입력해주세요.");
       return;
-    }
+    };
+
+    const requestData = {
+  loginId: formData.loginId, // state의 loginId 사용
+    nickname: formData.nickname,
+    password: formData.password,
+    };
+
     try {
-      // 실제 API 호출 로직 (예: fetch 또는 axios)
-      // const response = await fetch('/api/signup', {
-      //     method: 'POST',
-      //     headers: { 'Content-Type': 'application/json' },
-      //     body: JSON.stringify(formData)
-      // });
+      // ✨ fetch 대신 axios.post 사용
+ const response = await axios.post(
+          API_URL, 
+          requestData, 
+          {
+              headers: { 
+                  'Content-Type': 'application/json' 
+              },
+              // ✨ CORS 환경에서 쿠키를 주고받기 위해 필수 (로그인 시 필요)
+              withCredentials: true 
+          }
+      ); 
 
-      // if (response.ok) {
-      //     alert('회원가입 성공!');
-      //     // 성공 시 페이지 이동 (예: navigate('/login'))
-      // } else {
-      //     const errorData = await response.json();
-      //     alert(`회원가입 실패: ${errorData.message}`);
-      // }
+ // Axios는 2xx 응답만 성공으로 처리하고, 응답 본문은 response.data에 있습니다.
+ alert('회원가입 성공! ' + response.data); 
+ navigate("/login"); 
 
-      // 임시 로직
-      console.log("회원가입 데이터:", formData);
-      alert(`${formData.userId}님 가입완료`);
-      navigate("/login");
-    } catch (error) {
-      console.error("회원가입 중 오류 발생:", error);
-      alert("서버 오류로 가입에 실패했습니다.");
-    }
+ } catch (error) {
+      // Axios 에러 처리 (네트워크 오류, CORS, 4xx/5xx 모두 처리)
+      if (axios.isAxiosError(error) && error.response) {
+          // 서버에서 응답을 받은 경우 (4xx, 5xx 에러)
+          const errorMsg = error.response.data || error.response.statusText;
+          console.error("회원가입 실패 응답:", error.response);
+          alert(`회원가입 실패: ${errorMsg}`);
+      } else {
+          // 서버 연결 자체 실패 (CORS, 네트워크 다운 등)
+          console.error("네트워크 오류 또는 서버 연결 실패:", error);
+          alert("서버 연결에 실패했습니다. (CORS 또는 서버 꺼짐)");
+      }
+  }
   };
 
   return (
@@ -90,7 +105,7 @@ const Signup = () => {
           <S.BlackBox />
 
           <S.Circle_Box>
-            <S.Second_Curtain />
+           
             <S.Second_Curtain />
             <S.Second_Curtain />
             <S.Second_Curtain />
@@ -108,7 +123,6 @@ const Signup = () => {
             <S.First_Curtain />
             <S.First_Curtain />
             <S.First_Curtain />
-            <S.First_Curtain />
           </S.Circle_Box>
         </S.First_Box>
         <S.Logo src={Rebuild_logo} />
@@ -120,8 +134,8 @@ const Signup = () => {
           <S.INPUT_content
             type="text"
             placeholder="입력하시오..."
-            name="userId"
-            value={formData.userId}
+            name="loginId"
+            value={formData.loginId}
             onChange={handleChange}
           />
         </S.INPUT_BOX>
