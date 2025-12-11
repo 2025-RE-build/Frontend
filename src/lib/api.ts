@@ -93,3 +93,25 @@ export async function getTodaySupportMessage(): Promise<SupportMessageResponse> 
     requiresAuth: true,
   });
 }
+
+// 비밀번호 부분
+export interface LockStatusResponse {
+  hasLock: boolean;
+}
+
+export function setLockCode(code: string): Promise<string> {
+  return apiRequest<string>("/lock/set", {
+    method: "POST",
+    body: { code }, // BE의 LockDto.code 필드랑 이름 맞추기
+    requiresAuth: true,
+  });
+}
+
+// 잠금 해제
+export function unlockCode(code: string): Promise<string> {
+  return apiRequest<string>("/lock/unlock", {
+    method: "POST",
+    body: { code },
+    requiresAuth: true,
+  });
+}

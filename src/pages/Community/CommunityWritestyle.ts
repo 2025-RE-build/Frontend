@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Background = styled.div`
   background-color: black;
-  width: 400px;
+  width: 100%;
   height: 956px;
   overflow: hidden;
   display: flex;
@@ -98,7 +98,7 @@ export const ADD_img = styled.img`
   cursor: pointer;
 `;
 
-export const Title_Box = styled.textarea`
+export const Title_Box = styled.input`
   width: 100%;
   font-size: 15px;
   font-weight: 600;
@@ -183,7 +183,7 @@ export const Write_Button = styled.button`
   font-weight: 800;
   border: none;
   margin: 50px 0 20px 0;
-  cursor:pointer;
+  cursor: pointer;
 
   &:focus {
     outline: none;

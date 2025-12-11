@@ -172,7 +172,7 @@ export const DialWindow = styled.div`
   flex-direction: column;
 `;
 
-export const DialNumber = styled.span<{ isCenter?: boolean }>`
+export const DialNumber = styled.span<{ $isCenter?: boolean }>`
   flex: 1;
   display: flex;
   align-items: center;
@@ -183,7 +183,7 @@ export const DialNumber = styled.span<{ isCenter?: boolean }>`
   color: #ff4fa0;
   -webkit-text-stroke: 0.6px #000000;
 
-  background-color: ${({ isCenter }) => (isCenter ? "#FF708F" : "#FFC4D1")};
+  background-color: ${({ $isCenter }) => ($isCenter ? "#FF708F" : "#FFC4D1")};
 
   border-bottom: 1.5px solid #000;
 

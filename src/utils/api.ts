@@ -3,6 +3,11 @@ import type {
   CreateLetterRequest,
   LetterResponse,
   LetterListResponse,
+  PostRequest,
+  PostResponse,
+  CreateCommentRequest,
+  CommentResponse,
+  CommentListResponse,
 } from "@/types/api";
 
 export interface ApiRequestOptions {
@@ -57,19 +62,34 @@ export async function apiRequest<T>(
 
   const res = await fetch(url, fetchOptions);
   const text = await res.text();
-  const data: unknown = text ? JSON.parse(text) : null;
 
+  // 에러 처리
   if (!res.ok) {
     throw new ApiError(
       res.status,
-      `요청 실패: ${res.status} ${res.statusText}`
+      text || `요청 실패: ${res.status} ${res.statusText}`
     );
+  }
+
+  // 바디가 없는 경우
+  if (!text) {
+    return null as T;
+  }
+
+  // Content-Type JSON이면 JSON.parse, 아니면 문자열 그대로 반환
+  const contentType = res.headers.get("Content-Type") ?? "";
+  let data: unknown;
+
+  if (contentType.includes("application/json")) {
+    data = JSON.parse(text);
+  } else {
+    data = text;
   }
 
   return data as T;
 }
 
-// 편지생성
+// 편지 생성
 export const createLetter = async (
   request: CreateLetterRequest
 ): Promise<LetterResponse> => {
@@ -102,6 +122,106 @@ export const getLetterDetail = async (
 export const deleteLetter = async (letterId: number): Promise<void> => {
   return apiRequest<void>(`/letters/${letterId}`, {
     method: "DELETE",
+    requiresAuth: true,
+  });
+};
+
+export async function uploadPostImage(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/posts/upload`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new ApiError(response.status, "이미지 업로드에 실패했습니다.");
+  }
+
+  const imageUrl = await response.text();
+  return imageUrl;
+}
+
+// 커뮤니티 게시글 작성
+export async function createPost(body: PostRequest): Promise<PostResponse> {
+  return apiRequest<PostResponse>("/posts", {
+    method: "POST",
+    body,
+    requiresAuth: true,
+  });
+}
+
+// 커뮤니티 전체 리스트
+export const getPostList = async (): Promise<PostResponse[]> => {
+  return apiRequest<PostResponse[]>("/posts/list", {
+    method: "GET",
+    requiresAuth: true,
+  });
+};
+
+// 커뮤니티 개별 상세 페이지
+export const getPostDetail = async (postId: number): Promise<PostResponse> => {
+  return apiRequest<PostResponse>(`/posts/list/${postId}`, {
+    method: "GET",
+    requiresAuth: true,
+  });
+};
+
+// 최신글 3개
+export const getLatestPosts = async (): Promise<PostResponse[]> => {
+  return apiRequest<PostResponse[]>("/posts/latest", {
+    method: "GET",
+    requiresAuth: true,
+  });
+};
+
+// 댓글 관련 API
+export const getComments = async (
+  postId: number
+): Promise<CommentListResponse> => {
+  return apiRequest<CommentListResponse>(`/comments/${postId}/list`, {
+    method: "GET",
+    requiresAuth: true,
+  });
+};
+
+// 댓글 작성
+export const createComment = async (
+  postId: number,
+  body: CreateCommentRequest
+): Promise<CommentResponse> => {
+  return apiRequest<CommentResponse>(`/comments/${postId}`, {
+    method: "POST",
+    body,
+    requiresAuth: true,
+  });
+};
+
+// 댓글 수정
+export const updateComment = async (
+  commentId: number,
+  body: CreateCommentRequest
+): Promise<CommentResponse> => {
+  return apiRequest<CommentResponse>(`/comments/${commentId}/update`, {
+    method: "PUT",
+    body,
+    requiresAuth: true,
+  });
+};
+
+// 댓글 삭제
+export const deleteComment = async (commentId: number): Promise<void> => {
+  return apiRequest<void>(`/comments/${commentId}/delete`, {
+    method: "DELETE",
+    requiresAuth: true,
+  });
+};
+
+// 내가 쓴 댓글 (비밀)
+export const getMyComments = async (): Promise<CommentListResponse> => {
+  return apiRequest<CommentListResponse>("/comments/my", {
+    method: "GET",
     requiresAuth: true,
   });
 };

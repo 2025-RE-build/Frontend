@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Background = styled.div`
   background-color: black;
-  width: 400px;
+  width: 100%;
   height: 956px;
   overflow: hidden;
   display: flex;
@@ -131,7 +131,7 @@ export const Input_Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-cursor:pointer;
+  cursor: pointer;
   margin: 10px 0 20px 0;
   &:focus {
     outline: none;

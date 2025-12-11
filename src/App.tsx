@@ -45,7 +45,6 @@ function App() {
           <Route path="/mysecret" element={<MySecret />} />
           <Route path="/my-letters" element={<MyLetters />} />
           <Route path="/my-letters/:letterId" element={<LetterWrite />} />
-
           <Route path="/my-comments" element={<MyComments />} />
         </Routes>
       </AppContainer>

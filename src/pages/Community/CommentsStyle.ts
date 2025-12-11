@@ -1,15 +1,23 @@
 import styled from "styled-components";
 
 export const Background = styled.div`
-  background-color: black;
-  width: 400px;
-  height: 956px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  // background-color: black;
+  // width: 400px;
+  // height: 956px;
+  // overflow-y: scroll;
+  // overflow-x: hidden;
+  // display: flex;
+  // flex-direction: column;
+  // position: relative;
+  // scrollbar-width: none;
+  // align-items: center;
+  background-color: #000;
+  width: 100%;
+  min-height: 956px;
+  // overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
-  scrollbar-width: none;
   align-items: center;
 `;
 
@@ -163,11 +171,13 @@ export const Content_Box = styled.div`
 
 //댓글
 export const Comments_Box = styled.div`
+  width: 100%;
+  flex: 1; /* 🔥 남은 전체 공간 채우기 */
+  overflow-y: auto; /* 🔥 댓글 영역만 스크롤 */
+  padding-bottom: 120px; /* 🔥 입력창에 가리지 않게 여유 */
+  scrollbar-width: none;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 330px;
-  padding-bottom: 10px;
   align-items: center;
 `;
 
@@ -196,7 +206,7 @@ export const CommentITEM = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 10px 15px;
+  padding: 10px 12px;
   border-top: 1px solid #9d9d9d;
 `;
 
@@ -263,11 +273,27 @@ export const Comment = styled.div`
 `;
 
 //입력하시오 버튼
+export const Input_BottonWrapper = styled.div`
+  width: 400px;
+  height: 100px;
+  background-color: #000;
+  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
 export const Input_Button = styled.button`
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 373px;
   min-height: 67px;
   border-radius: 33px;
-  border: 1px solid #d3d3d3;
   background-color: #ffc4d1;
   font-size: 14px;
   font-weight: 800;

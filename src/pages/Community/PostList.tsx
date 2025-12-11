@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "@/pages/Community/PostListstyle";
 
@@ -9,72 +9,24 @@ import Fire from "@/assets/local_fire_department.svg";
 import TITLE from "@/assets/NewPOST2.svg";
 import GO from "@/assets/arrow_pre.svg";
 
-interface CardData {
-  id: number;
-  title: string;
-  content: string;
-}
-
-const MOCK_POSTS: CardData[] = [
-  {
-    id: 1,
-    title: " 썸인줄 알았는데 혼자였어요.",
-    content:
-      "매일 톡하고, 서로 일상 공유하고, 잘 자라는 말까지 하길래 그냥… 나만 그런 게 아니라고 생각했어요. 근데 알고 보니 걔는 원래 다정한 성격이고, 나 혼자만 마음 키우고 있었더라고요. 친구한테 “걔 다른 사람이랑 사귄대”라는 소식 듣고 멘붕… 1인 썸도 썸인가요? 😂",
-  },
-  {
-    id: 2,
-    title: ' "차이고도 고백한 나, 레전드.mp4"',
-    content:
-      "좋아하던 사람이 있었는데, 이미 내가 좀 부담스럽다는 말도 은근히 했던 사람. 근데 왠지 한 번은 정식으로 고백하고 싶었어요. “혹시 마음 바뀌었을까” 하는 1%의 기대를 안고 문자 보냈는데, 답장: “미안, 오히려 더 부담스러워.” 그대로 톡 삭제하고 이불 속으로 3일 잠적했습니다.",
-  },
-  {
-    id: 3,
-    title: ' "고백 안 했는데 차였어요"',
-    content:
-      "그냥 잘 지내던 친구였는데, 어느 날 갑자기 “우리 그런 사이 아니잖아?”라는 말을 들었어요. 어이없고 당황스러워서 “응, 나 그런 말 한 적 없어…”라고 했는데, 이미 주변 사람들한테 다 퍼진 상태더라고요. 소문은 내가 고백했다가 차였다는 버전으로 돌아다니고요.",
-  },
-  {
-    id: 4,
-    title: ' "4.고백 안 했는데 차였어요"',
-    content:
-      "그냥 잘 지내던 친구였는데, 어느 날 갑자기 “우리 그런 사이 아니잖아?”라는 말을 들었어요. 어이없고 당황스러워서 “응, 나 그런 말 한 적 없어…”라고 했는데, 이미 주변 사람들한테 다 퍼진 상태더라고요. 소문은 내가 고백했다가 차였다는 버전으로 돌아다니고요.",
-  },
-  {
-    id: 5,
-    title: ' "5.고백 안 했는데 차였어요"',
-    content:
-      "그냥 잘 지내던 친구였는데, 어느 날 갑자기 “우리 그런 사이 아니잖아?”라는 말을 들었어요. 어이없고 당황스러워서 “응, 나 그런 말 한 적 없어…”라고 했는데, 이미 주변 사람들한테 다 퍼진 상태더라고요. 소문은 내가 고백했다가 차였다는 버전으로 돌아다니고요.",
-  },
-  {
-    id: 6,
-    title: ' "6.고백 안 했는데 차였어요"',
-    content:
-      "그냥 잘 지내던 친구였는데, 어느 날 갑자기 “우리 그런 사이 아니잖아?”라는 말을 들었어요. 어이없고 당황스러워서 “응, 나 그런 말 한 적 없어…”라고 했는데, 이미 주변 사람들한테 다 퍼진 상태더라고요. 소문은 내가 고백했다가 차였다는 버전으로 돌아다니고요.",
-  },
-  {
-    id: 7,
-    title: ' "7.고백 안 했는데 차였어요"',
-    content:
-      "그냥 잘 지내던 친구였는데, 어느 날 갑자기 “우리 그런 사이 아니잖아?”라는 말을 들었어요. 어이없고 당황스러워서 “응, 나 그런 말 한 적 없어…”라고 했는데, 이미 주변 사람들한테 다 퍼진 상태더라고요. 소문은 내가 고백했다가 차였다는 버전으로 돌아다니고요.",
-  },
-];
+import { getPostList, ApiError } from "@/utils/api";
+import type { PostResponse } from "@/types/api";
 
 // 카드 컴포넌트
-const Card: React.FC<{ data: CardData; onGoClick: (id: number) => void }> = ({
-  data,
-  onGoClick,
-}) => (
+const Card: React.FC<{
+  data: PostResponse;
+  onGoClick: (id: number) => void;
+}> = ({ data, onGoClick }) => (
   <S.PostItem_box>
     <S.GO_img
       src={GO}
       onClick={(e) => {
-        e.stopPropagation(); // 혹시 PostItem_box에 다른 클릭 핸들러 생겨도 방지
+        e.stopPropagation();
         onGoClick(data.id);
       }}
       style={{ cursor: "pointer" }}
     />
-    <S.Post_title>{data.title}</S.Post_title>
+    <S.Post_title>" {data.title} "</S.Post_title>
     <S.Post_content>{data.content}</S.Post_content>
   </S.PostItem_box>
 );
@@ -85,16 +37,43 @@ const Divider: React.FC = () => <S.HR />;
 const PostList: React.FC = () => {
   const navigate = useNavigate();
 
-  const dataLength = MOCK_POSTS.length;
-  const [visibleCount, setVisibleCount] = useState(3);
-  const visiblePosts = MOCK_POSTS.slice(0, visibleCount);
+  const [posts, setPosts] = useState<PostResponse[]>([]);
+  const [visibleCount, setVisibleCount] = useState<number>(3);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // 전체 글 목록 불러오기
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await getPostList();
+        setPosts(data);
+      } catch (err: unknown) {
+        console.error(err);
+        if (err instanceof ApiError) {
+          setError(`글 목록을 불러오지 못했습니다. (code: ${err.status})`);
+        } else {
+          setError("글 목록을 불러오지 못했습니다.");
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  const dataLength = posts.length;
+  const visiblePosts = posts.slice(0, visibleCount);
 
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => Math.min(prevCount + 3, dataLength));
   };
 
   const handleGoClick = (id: number) => {
-    // 여기서 상세 댓글 페이지로 이동
+    // 댓글/상세 페이지로 이동
     navigate(`/community/comments/${id}`);
   };
 
@@ -118,14 +97,24 @@ const PostList: React.FC = () => {
       </S.Title_Box>
 
       <S.POSTS_BOX>
-        {visiblePosts.map((data, index) => (
-          <React.Fragment key={data.id}>
-            <Card data={data} onGoClick={handleGoClick} />
-            {index < visiblePosts.length - 1 && <Divider />}
-          </React.Fragment>
-        ))}
+        {isLoading && <div>게시글을 불러오는 중입니다...</div>}
 
-        {isMoreButtonVisible && (
+        {error && !isLoading && <div style={{ color: "red" }}>{error}</div>}
+
+        {!isLoading && !error && visiblePosts.length === 0 && (
+          <div>첫 번째 글을 남겨보세요</div>
+        )}
+
+        {!isLoading &&
+          !error &&
+          visiblePosts.map((data, index) => (
+            <React.Fragment key={data.id}>
+              <Card data={data} onGoClick={handleGoClick} />
+              {index < visiblePosts.length - 1 && <Divider />}
+            </React.Fragment>
+          ))}
+
+        {!isLoading && !error && isMoreButtonVisible && (
           <S.Input_Button onClick={handleLoadMore}>더보기</S.Input_Button>
         )}
       </S.POSTS_BOX>

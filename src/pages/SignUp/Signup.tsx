@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import * as S from "@/pages/SignUp/Signup";
 
 import Rebuild_logo from "@/assets/로고1.svg";
@@ -12,6 +12,9 @@ import Asterisk1 from "@/assets/Asterisk 1.svg";
 import SoftFlower from "@/assets/four_leaf_flower.svg";
 import fiveleaf from "@/assets/5_Dots.svg";
 import Smile from "@/assets/smile_ob.svg";
+
+// 닉네임 저장
+import { saveLoginInfo } from "@/utils/auth";
 
 interface SignupForm {
   loginId: string;
@@ -42,45 +45,45 @@ const Signup = () => {
     if (!formData.loginId || !formData.nickname || !formData.password) {
       alert("모든 정보를 입력해주세요.");
       return;
-    };
+    }
 
     const requestData = {
-  loginId: formData.loginId, // state의 loginId 사용
-    nickname: formData.nickname,
-    password: formData.password,
+      loginId: formData.loginId, // state의 loginId 사용
+      nickname: formData.nickname,
+      password: formData.password,
     };
 
     try {
       // ✨ fetch 대신 axios.post 사용
- const response = await axios.post(
-          API_URL, 
-          requestData, 
-          {
-              headers: { 
-                  'Content-Type': 'application/json' 
-              },
-              // ✨ CORS 환경에서 쿠키를 주고받기 위해 필수 (로그인 시 필요)
-              withCredentials: true 
-          }
-      ); 
+      const response = await axios.post(API_URL, requestData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // ✨ CORS 환경에서 쿠키를 주고받기 위해 필수 (로그인 시 필요)
+        withCredentials: true,
+      });
 
- // Axios는 2xx 응답만 성공으로 처리하고, 응답 본문은 response.data에 있습니다.
- alert('회원가입 성공! ' + response.data); 
- navigate("/login"); 
+      saveLoginInfo(formData.loginId, formData.nickname);
 
- } catch (error) {
+      alert("회원가입 성공! " + response.data);
+      navigate("/login");
+
+      // Axios는 2xx 응답만 성공으로 처리하고, 응답 본문은 response.data에 있습니다.
+      alert("회원가입 성공! " + response.data);
+      navigate("/login");
+    } catch (error) {
       // Axios 에러 처리 (네트워크 오류, CORS, 4xx/5xx 모두 처리)
       if (axios.isAxiosError(error) && error.response) {
-          // 서버에서 응답을 받은 경우 (4xx, 5xx 에러)
-          const errorMsg = error.response.data || error.response.statusText;
-          console.error("회원가입 실패 응답:", error.response);
-          alert(`회원가입 실패: ${errorMsg}`);
+        // 서버에서 응답을 받은 경우 (4xx, 5xx 에러)
+        const errorMsg = error.response.data || error.response.statusText;
+        console.error("회원가입 실패 응답:", error.response);
+        alert(`회원가입 실패: ${errorMsg}`);
       } else {
-          // 서버 연결 자체 실패 (CORS, 네트워크 다운 등)
-          console.error("네트워크 오류 또는 서버 연결 실패:", error);
-          alert("서버 연결에 실패했습니다. (CORS 또는 서버 꺼짐)");
+        // 서버 연결 자체 실패 (CORS, 네트워크 다운 등)
+        console.error("네트워크 오류 또는 서버 연결 실패:", error);
+        alert("서버 연결에 실패했습니다. (CORS 또는 서버 꺼짐)");
       }
-  }
+    }
   };
 
   return (
@@ -105,7 +108,6 @@ const Signup = () => {
           <S.BlackBox />
 
           <S.Circle_Box>
-           
             <S.Second_Curtain />
             <S.Second_Curtain />
             <S.Second_Curtain />
