@@ -73,7 +73,9 @@ const LatestPost = () => {
     );
   }
 
+  {/*
   const isEmpty = posts.length === 0;
+
 
   const PostListContent = isEmpty ? (
     <div>아직 작성된 게시글이 없어요.</div>
@@ -93,6 +95,33 @@ const LatestPost = () => {
               handleListClick();
             }}
           />
+          <S.New_title>
+            {index + 1}. " {post.title} "
+          </S.New_title>
+          <S.POST_content_box>
+            <S.POST_content>{post.content}</S.POST_content>
+          </S.POST_content_box>
+        </S.NewPosts>
+      ))}
+    </S.NewPost_Box>
+  );*/}
+  const isArrayPosts = Array.isArray(posts);
+  const isEmpty = !isArrayPosts || posts.length === 0;
+
+  const PostListContent = isEmpty ? (
+    <div>아직 작성된 게시글이 없어요.</div>
+  ) : (
+    <S.NewPost_Box>
+      {/* 객체 타입일 경우 .map이 없으므로 에러가 발생함. 
+         isArrayPosts && 를 추가하여 안전장치를 만듭니다.
+      */}
+      {isArrayPosts && posts.map((post, index) => (
+        <S.NewPosts
+          key={post.id || index} // id가 없을 경우를 대비해 index를 보조로 사용
+          onClick={() => handlePostClick(post.id)}
+          aria-label={`${post.title} 게시글 보기`}
+        >
+          {/* ... 내부 코드 동일 */}
           <S.New_title>
             {index + 1}. " {post.title} "
           </S.New_title>
