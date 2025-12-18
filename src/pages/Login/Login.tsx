@@ -31,9 +31,7 @@ const Login = () => {
       [name]: value,
     }));
   };
-
-  const API_URL = "http://localhost:8080/api/users/login";
-
+  const API_URL = "https://rebuildlion.cloud/api/users/login";
   const handleSubmit = async () => {
     if (!formData.loginId || !formData.password) {
       alert("모든 정보를 입력해주세요.");
@@ -41,46 +39,50 @@ const Login = () => {
     }
 
     const requestData = {
-      loginId: formData.loginId, // 프론트 userId -> 백엔드 loginId
+      loginId: formData.loginId,
       password: formData.password,
-  };
-
-  try {
-     // 2. 📡 API 호출 (fetch 사용)
-    const response = await fetch(API_URL, {
-    method: 'POST',
-     headers: { 
-     'Content-Type': 'application/json' 
-    },
-     body: JSON.stringify(requestData),
-              // 3.  쿠키(RefreshToken)를 주고받기 위해 필수 설정
-              credentials: 'include' 
-    });
-    
-    if (response.ok) {
-              // 응답 본문에서 accessToken을 추출
-              const responseData = await response.json(); 
-              const accessToken = responseData.accessToken;
-              
-              // 4.  Access Token 저장 (보통 로컬/세션 스토리지 또는 메모리에 저장)
-              localStorage.setItem('accessToken', accessToken);
-              
-              // Refresh Token은 'credentials: include' 옵션 덕분에 
-              // 브라우저에 HTTP Only 쿠키로 자동으로 저장됩니다.
-              
-    alert(`${formData.loginId}님 환영합니다!`);
-    navigate("/home");
-    } else {
-    const errorText = await response.text(); 
-    alert(`로그인 실패: ${errorText || response.statusText}`);
-    }
-    
-    } catch (error) {
-    console.error("로그인 중 오류 발생:", error);
-    alert("서버 연결에 실패했습니다. (CORS, 서버 꺼짐 등 확인 필요)");
-     }
     };
 
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(requestData),
+        credentials: 'include' 
+      });
+      
+      if (response.ok) {
+        const responseData = await response.json(); 
+        const accessToken = responseData.accessToken;
+        
+        localStorage.setItem('accessToken', accessToken);
+        
+        alert(`${formData.loginId}님 환영합니다!`);
+        navigate("/home");
+      } else {
+        // ✅ [Object object] 방지 및 서버 에러 메시지 추출
+        const contentType = response.headers.get("content-type");
+        let errorMsg = "";
+
+        if (contentType && contentType.includes("application/json")) {
+          const errorData = await response.json();
+          // 서버 응답 구조에 따라 errorData.message 혹은 errorData.error 등으로 수정하세요.
+          errorMsg = errorData.message || errorData.error || "아이디 또는 비밀번호를 확인해주세요.";
+        } else {
+          // JSON이 아닌 텍스트로 올 경우
+          errorMsg = await response.text();
+        }
+
+        alert(`로그인 실패: ${errorMsg}`);
+      }
+      
+    } catch (error) {
+      console.error("로그인 중 오류 발생:", error);
+      alert("서버 연결에 실패했습니다.");
+    }
+  };
   return (
     <S.Background>
       <S.DIV>
