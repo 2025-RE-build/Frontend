@@ -1,0 +1,48 @@
+[33mcommit 752ff95faed59b34b1063940019cdafccc38b11e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32m김예나[m[33m)[m
+Author: aney0714 <gimhh770@gmail.com>
+Date:   Fri Nov 28 14:18:06 2025 +0900
+
+    카톡 ui완성
+
+[33mcommit a38e42d543d3501bf559acc392acc0de7b02f53f[m
+Author: aney0714 <gimhh770@gmail.com>
+Date:   Wed Nov 26 20:44:14 2025 +0900
+
+    11/26 회원가입 로직 추가
+
+[33mcommit 8a9a03517720a008331964a0d9b9675631fe6d4e[m[33m ([m[1;31morigin/김예나[m[33m)[m
+Author: aney0714 <gimhh770@gmail.com>
+Date:   Tue Nov 25 23:22:07 2025 +0900
+
+    김예나 회원가입 페이지
+
+[33mcommit 182978c5c249efe3f0877001e4efe3959fefdc23[m
+Author: aney0714 <gimhh770@gmail.com>
+Date:   Tue Nov 25 13:26:16 2025 +0900
+
+    김예나 nav바 추가
+
+[33mcommit efc3f67d5d5f1b35988cead2f15d6933446184bb[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Merge: c63108f 081de4d
+Author: aney0714 <gimhh770@gmail.com>
+Date:   Sun Nov 23 16:50:39 2025 +0900
+
+    Merge branch '김예나' into dev
+
+[33mcommit c63108fcdfdae2cbeaf69597ee2a45905c7137e8[m
+Author: aney0714 <gimhh770@gmail.com>
+Date:   Sun Nov 23 16:50:29 2025 +0900
+
+    오류해결
+
+[33mcommit 081de4d862bb5c144301d3f183cbba1118c3e203[m
+Author: aney0714 <gimhh770@gmail.com>
+Date:   Sun Nov 23 16:40:17 2025 +0900
+
+    김예나 header
+
+[33mcommit a3ea4c6749a847c6188642011a28bbc4dce801e3[m[33m ([m[1;31morigin/양서윤[m[33m)[m
+Author: yangyangeeee <sophia_ysy@naver.com>
+Date:   Mon Nov 10 12:11:00 2025 +0900
+
+    first commit
