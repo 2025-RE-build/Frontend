@@ -6,7 +6,7 @@ import Header from "@/components/Header/Header";
 
 import Back from "@/assets/arrow_back_white.svg";
 import Fire from "@/assets/local_fire_department.svg";
-import TITLE from "@/assets/NewPOST2.svg";
+import TITLE from "@/assets/NEWPOST2.svg";
 import GO from "@/assets/arrow_pre.svg";
 
 import { getPostList, ApiError } from "@/utils/api";
