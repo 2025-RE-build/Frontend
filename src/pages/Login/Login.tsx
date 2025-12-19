@@ -62,16 +62,13 @@ const Login = () => {
         alert(`${formData.loginId}님 환영합니다!`);
         navigate("/home");
       } else {
-        // ✅ [Object object] 방지 및 서버 에러 메시지 추출
         const contentType = response.headers.get("content-type");
         let errorMsg = "";
 
         if (contentType && contentType.includes("application/json")) {
           const errorData = await response.json();
-          // 서버 응답 구조에 따라 errorData.message 혹은 errorData.error 등으로 수정하세요.
           errorMsg = errorData.message || errorData.error || "아이디 또는 비밀번호를 확인해주세요.";
         } else {
-          // JSON이 아닌 텍스트로 올 경우
           errorMsg = await response.text();
         }
 

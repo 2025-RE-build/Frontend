@@ -62,7 +62,6 @@ const Signup = () => {
 
       saveLoginInfo(formData.loginId, formData.nickname);
       
-      // response.data가 객체일 수 있으므로 문자열만 추출하거나 기본 메시지 출력
       alert("회원가입 성공!"); 
       navigate("/login");
 

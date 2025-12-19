@@ -41,14 +41,13 @@ const KakaoTalk = () => {
   const getAccessToken = () => localStorage.getItem("accessToken");
 
   // 2. 과거 내역 불러오기 (REST API)
-// 2. 과거 내역 불러오기 (REST API)
+
 useEffect(() => {
   const fetchHistory = async () => {
     try {
       const token = localStorage.getItem("accessToken");
       if (!token) return;
 
-      // localStorage에서 ID를 가져오고, 없으면 고정값(1)을 사용
       const savedId = localStorage.getItem("currentChatId") || MONOLOGUE_ID; 
       
       const response = await axios.get(`${BASE_URL}/monologues/${savedId}`, {
@@ -69,7 +68,7 @@ useEffect(() => {
   };
 
   fetchHistory();
-}, [BASE_URL]); // 컴포넌트 마운트 시 실행
+}, [BASE_URL]); 
 
 
 // 3. 웹소켓 연결 및 실시간 수신 설정
@@ -84,7 +83,6 @@ useEffect(() => {
     stompClient.subscribe('/topic/messages', (sdkEvent) => {
       const data = JSON.parse(sdkEvent.body);
       
-      // [정답 설계 반영] 서버가 준 monologueId를 로컬 스토리지에 영구 저장
       if (data.monologueId) {
         localStorage.setItem("currentChatId", data.monologueId);
       }
@@ -117,33 +115,27 @@ useEffect(() => {
   }, [messages]);
 
   // 4. 메시지 전송 로직
-  // 4. 메시지 전송 로직 (수정본)
   const sendMessage = useCallback(() => {
     const messageContent = messageInput.trim();
     const client = stompClientRef.current;
 
-    // 1. 입력값이 없으면 무시
     if (messageContent === "") return;
 
-    // 2. 연결 상태 확인
     if (!client || !client.connected) {
       alert("서버와 연결이 끊겨 있습니다. 페이지를 새로고침해주세요.");
       return;
     }
 
     try {
-      // 3. 서버로 전송할 데이터 구조 (백엔드 DTO와 일치해야 함)
+
       const messageData = {
         monologueId: MONOLOGUE_ID,
         content: messageContent,
       };
 
-      // 4. 서버로 메시지 전송
-      // 주의: 여기서는 setMessages를 하지 않습니다. 
-      // 화면 렌더링은 위쪽 useEffect의 subscribe(구독) 로직에서 처리합니다.
       client.send("/app/chat", {}, JSON.stringify(messageData));
 
-      // 5. 입력창만 초기화
+      
       setMessageInput("");
       
       console.log("메시지 전송 성공:", messageData);

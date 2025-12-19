@@ -70,18 +70,13 @@ const CommunityWrite = () => {
         imageUrl = await uploadPostImage(imageFile);
       }
   
-      // 변경 부분: 서버가 null을 싫어할 수 있으므로 
-      // imageUrl이 있을 때만 데이터를 구성하거나, 빈 문자열을 보냅니다.
-      const body: PostRequest = {
+       const body: PostRequest = {
         title: title.trim(),
         content: content.trim(),
         imageUrl: imageUrl ?? "", // null 대신 빈 문자열("")을 보내봅니다.
       };
   
-      /* 만약 위 방법도 안 된다면 필드 자체를 제거해 보세요:
-         const body: any = { title, content };
-         if (imageUrl) body.imageUrl = imageUrl;
-      */
+    
   
       await createPost(body);
       navigate("/Community/postList");
@@ -123,7 +118,7 @@ const CommunityWrite = () => {
               <S.ADD_img src={ADD_img} />
             </S.ADD_IMG_button>
 
-            {/* 숨겨진 파일 input */}
+           
             <input
               ref={fileInputRef}
               type="file"
@@ -142,7 +137,6 @@ const CommunityWrite = () => {
           <S.Content_Box value={content} onChange={handleContentChange} />
         </S.Community_ContentBOX>
 
-        {/* 이미지 선택 시 미리보기 */}
         {imagePreviewUrl && (
           <div style={{ marginTop: "12px" }}>
             <img
